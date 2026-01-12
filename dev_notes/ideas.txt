@@ -1,0 +1,12 @@
+IDEIAS
+
+1. Sistema de "chips"
+2. Lore
+3. Bossfights
+
+FUNÇÕES A IMPLEMENTAR
+
+1. UI
+2. player.py
+3. Saves
+4. Inimigos
