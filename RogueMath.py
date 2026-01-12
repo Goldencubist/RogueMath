@@ -1,8 +1,15 @@
-import pygame
 import sys
+import os
+
+import pygame
+from golden_utils import true, false, none, rjson, wjson
+
 from states import state_sys, gs
 import UI.fonts
 from kerneldefs import initialization, GET_OUT
+
+sys.stdout = open(os.path.join(".RogueMath_data", "log"), "w", encoding="utf-8")
+sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="utf-8")
 
 tamanho_tela, tela, tela_atual, jogando, tempo = initialization()
 

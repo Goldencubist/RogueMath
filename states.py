@@ -1,4 +1,11 @@
+import sys
+import os
+
 import pygame
+from golden_utils import true, false, none, rjson, wjson
+
+sys.stdout = open(os.path.join(".RogueMath_data", "log"), "w", encoding="utf-8")
+sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="utf-8")
 
 gs = [
     "menu",
@@ -30,5 +37,7 @@ def state_sys(current_screen):
                 cs = 0
             else:
                 cs = 2
+        case _:
+            cs = 0
     
     return gs[cs]
