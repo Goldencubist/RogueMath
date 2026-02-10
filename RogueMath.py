@@ -5,6 +5,7 @@ import pygame
 from golden_utils import true, false, none, rjson, wjson
 
 from src.utils.states import state_sys, gs
+from src.utils.draw import draw
 from src.fonts import fonts
 from src.utils.kerneldefs import initialization, GET_OUT
 
@@ -21,9 +22,8 @@ while jogando:
         elif evento.type == pygame.KEYDOWN:
             tela_atual = state_sys(tela_atual)
     
+    draw(tela_atual, tela, tamanho_tela)
     print(tela_atual)
-    tela.fill((103, 55, 192))
-    pygame.display.flip()
     tempo.tick(30)
 
 GET_OUT()
