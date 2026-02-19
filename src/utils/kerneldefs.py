@@ -52,7 +52,7 @@ def wsave(player):
 def initialization():
     pygame.init()
     pygame.font.init()
-    tamanho_tela = 700
+    tamanho_tela = 650
     tela = pygame.display.set_mode((tamanho_tela, tamanho_tela))
     pygame.display.set_caption("RogueMath")
     print("Duro de calcular")
