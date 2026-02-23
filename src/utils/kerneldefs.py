@@ -36,11 +36,11 @@ def wsave(player):
         os.rename(os.path.join(".", ".RogueMath_data", "data.dat"), os.path.join(".", ".RogueMath_data", "data.bak"))
         wjson(player.__dict__, os.path.join(".", ".RogueMath_data", "data.dat"))
     except FileNotFoundError:
-        with open(os.path.join(".", ".RogueMath_data", "data.dat"), "r"):
+        with open(os.path.join(".", ".RogueMath_data", "data.dat"), "a"):
             pass
-        with open(os.path.join(".", ".RogueMath_data", "data.bak"), "r"):
+        with open(os.path.join(".", ".RogueMath_data", "data.bak"), "a"):
             pass
-        with open(os.path.join(".", ".RogueMath_data", "data.old"), "r"):
+        with open(os.path.join(".", ".RogueMath_data", "data.old"), "a"):
             pass
         os.remove(os.path.join(".", ".RogueMath_data", "data.old"))
         os.rename(os.path.join(".", ".RogueMath_data", "data.bak"), os.path.join(".", ".RogueMath_data", "data.old"))

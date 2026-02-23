@@ -1,21 +1,27 @@
 Olá! Se você está lendo isso, você procurou saber quem fez esse jogo.
-Aqui estão os colaboradores, aos quais eu agradeço muito (eu incluso)
+Aqui estão os autores deste jogo, contruido com muito suor, trabalho duro e trabalho em equipe
 
 --- PROGRAMAÇÃO ---
     Golden Dev
     Myachsky
 
 --- ARTES VISUAIS ---
-    ???
+    Golden Dev
+    Myachsky
+    ??? (nome não definido)
 
 --- MÚSICA ---
-    Gbom
+    Myachsky
     Golden Dev
 
+-- CONTROLE DE QUALIDADE --
+    Gbom
+
 --- AGRADECIMENTOS ESPECIAIS ---
-    - Inspirações -
-        Zombie Rush (Estilo de Gameplay)
-        Terraria (Estilo de Arte)
-        Undertale (Humor (ainda não adicionado), Estilo de Arte, Estilo Musical)
+    -- Inspirações --
+        Zombie Rush - Estilo de Gameplay
+        Terraria - Estilo de Arte
+        Undertale - Humor (ainda não adicionado), Estilo de Arte, Estilo Musical
+        Undertale Last Breath (Fan game de Undertale) - Estilo Musical
 
 ASS. : Golden Dev
