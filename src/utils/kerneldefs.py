@@ -1,5 +1,8 @@
 import sys
 import os
+import random
+import threading
+from time import sleep as sl
 
 import pygame
 from golden_utils import true, false, none, rjson, wjson
@@ -57,6 +60,22 @@ def initialization():
     pygame.display.set_caption("RogueMath")
     print("Duro de calcular")
     return tamanho_tela, tela, "menu", true, pygame.time.Clock()
+
+def music():
+    pygame.mixer.init()
+    play_folder = os.path.join(".", "assets", "music")
+    musicas = [os.path.join(play_folder, f) for f in os.listdir(play_folder)]
+    while true:
+        if not musicas: break
+        i = random.randint(0, len(musicas) - 1)
+        pygame.mixer.music.load(musicas[i])
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy():
+            sl(1)
+
+def music_s():
+    music_t = threading.Thread(target = music, daemon = true)
+    music_t.start()
 
 def GET_OUT():
     pygame.quit()

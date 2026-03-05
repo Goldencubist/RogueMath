@@ -1,5 +1,8 @@
 import sys
 import os
+import random
+import threading
+from time import sleep as sl
 from math import atan2, cos, sin
 
 import pygame
@@ -8,10 +11,11 @@ from golden_utils import true, false, none, rjson, wjson
 from src.utils.states import state_sys, gs
 from src.utils.draw import draw
 from src.fonts import fonts
-from src.utils.kerneldefs import initialization, GET_OUT, rsave, wsave
+from src.utils.kerneldefs import initialization, GET_OUT, rsave, wsave, music, music_s
 
 sys.stdout = open(os.path.join(".RogueMath_data", "log"), "w", encoding="utf-8")
 sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="utf-8")
+music_s()
 
 tamanho_tela, tela, tela_atual, jogando, tempo = initialization()
 pygame.mouse.set_visible(false)

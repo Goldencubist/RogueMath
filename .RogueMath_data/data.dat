@@ -1,9 +1,9 @@
 {
-    "x": 371,
-    "y": 363,
+    "x": 543,
+    "y": 65,
     "coins": 0,
     "speed": 1,
-    "lastshot": 13098,
+    "lastshot": 0,
     "delay": 1000,
     "posx": 61,
     "posy": 626
