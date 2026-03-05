@@ -1,5 +1,6 @@
 import sys
 import os
+from math import atan2, cos, sin
 
 import pygame
 from golden_utils import true, false, none, rjson, wjson
@@ -15,6 +16,8 @@ sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="u
 tamanho_tela, tela, tela_atual, jogando, tempo = initialization()
 pygame.mouse.set_visible(false)
 player = rsave()
+player.lastshot = 0
+balas = []
 
 while jogando:
     eventos = pygame.event.get()
@@ -23,9 +26,18 @@ while jogando:
             jogando = False
         elif evento.type == pygame.KEYDOWN:
             tela_atual = state_sys(tela_atual)
+        elif evento.type == pygame.MOUSEBUTTONDOWN:
+            if evento.button == 1:
+                balanova = player.shoot(pygame.mouse.get_pos())
+                if balanova is not None and balanova != none:
+                    balas.append(balanova)
     if tela_atual == "gameplay":
         player.movement() #type: ignore (isso é pra meu IDE problemático que acha que o rsave vai dar None)
-    draw(tela_atual, tela, tamanho_tela, player)
+        if len(balas) != 0:
+            for bala in balas:
+                bala.movement()
+            balas = [b for b in balas if b.inbounds]
+    draw(tela_atual, tela, tamanho_tela, player, balas)
     print(tela_atual)
     tempo.tick(30)
 

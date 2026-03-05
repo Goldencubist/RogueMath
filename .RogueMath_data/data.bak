@@ -1,6 +1,10 @@
 {
-    "posx": 621,
-    "posy": 621,
+    "x": 362,
+    "y": 347,
     "coins": 0,
-    "speed": 1
+    "speed": 1,
+    "lastshot": 10332,
+    "delay": 1000,
+    "posx": 61,
+    "posy": 626
 }

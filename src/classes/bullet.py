@@ -11,5 +11,5 @@ class bullet:
     def movement(self):
         self.x += self.sx
         self.y += self.sy
-        if self.x <= 649 or self.x >= 4 or self.y <= 649 or self.y >= 4:
+        if self.x >= 649 or self.x <= 4 or self.y >= 649 or self.y <= 4:
             self.inbounds = false

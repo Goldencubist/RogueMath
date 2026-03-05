@@ -5,7 +5,7 @@ from src.fonts.fonts import fontetítulo
 
 textotítulo = fontetítulo.render("RogueMath", false, (255, 255, 255))
 
-def draw(tela_atual, tela, tamanho_tela, player):
+def draw(tela_atual, tela, tamanho_tela, player, balas):
     mousepos = pygame.mouse.get_pos()
     match tela_atual:
         case "menu":
@@ -15,6 +15,9 @@ def draw(tela_atual, tela, tamanho_tela, player):
             tela.fill((255, 255, 0))
             pygame.draw.rect(tela, (255, 255, 0), (player.x - 30, player.y - 30, 30, 30))
             pygame.draw.rect(tela, (0, 0, 0), (player.x - 30, player.y - 30, 30, 30), 3)
+            if len(balas) != 0:
+                for bala in balas:
+                    pygame.draw.circle(tela, (0, 0, 0), (bala.x, bala.y), 3)
         case _:
             tela.fill((103, 55, 192))
     pygame.draw.circle(tela, (255, 255, 255), mousepos, 4)
