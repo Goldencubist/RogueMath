@@ -1,12 +1,13 @@
 from golden_utils import true, false, none
 
 class bullet:
-    def __init__(self, x, y, speedx, speedy):
+    def __init__(self, x, y, speedx, speedy, perfs):
         self.x = x
         self.y = y
         self.sx = speedx
         self.sy = speedy
         self.inbounds = true
+        self.perfsleft = perfs
     
     def movement(self):
         self.x += self.sx

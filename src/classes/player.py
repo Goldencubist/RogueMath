@@ -14,6 +14,8 @@ class player:
         self.speed = 1
         self.lastshot = 0
         self.delay = 1000
+        self.base_damage = 1
+        self.perfs = 1
 
     def movement(self):
         teclas = pygame.key.get_pressed()
@@ -33,9 +35,10 @@ class player:
             dx = mousex - (self.x - 15)
             dy = mousey - (self.y - 15)
             an = atan2(dy, dx)
-            sx = cos(an) * 3
-            sy = sin(an) * 3
+            sx = cos(an) * 5
+            sy = sin(an) * 5
             self.lastshot = now
-            return bullet(self.x - 15, self.y - 15, sx, sy)
+            return bullet(self.x - 15, self.y - 15, sx, sy, self.perfs)
         else:
             return none
+

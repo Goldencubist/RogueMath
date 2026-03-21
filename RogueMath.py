@@ -11,7 +11,8 @@ from golden_utils import true, false, none, rjson, wjson
 from src.utils.states import state_sys, gs
 from src.utils.draw import draw
 from src.fonts import fonts
-from src.utils.kerneldefs import initialization, GET_OUT, rsave, wsave, music, music_s
+from src.utils.kerneldefs import initialization, GET_OUT, rsave, wsave, music, music_s, collide
+from src.classes.enemy import enemy
 
 sys.stdout = open(os.path.join(".RogueMath_data", "log"), "w", encoding="utf-8")
 sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="utf-8")
@@ -21,10 +22,13 @@ tamanho_tela, tela, tela_atual, jogando, tempo = initialization()
 pygame.mouse.set_visible(false)
 player = rsave()
 player.lastshot = 0
-balas = []
+enemy_delay = random.randint(1500, 4000)
+last_enemy = 0
+balas, inimigos = [], []
 
 while jogando:
     eventos = pygame.event.get()
+    Now = pygame.time.get_ticks()
     for evento in eventos:
         if evento.type == pygame.QUIT:
             jogando = False
@@ -36,12 +40,23 @@ while jogando:
                 if balanova is not None and balanova != none:
                     balas.append(balanova)
     if tela_atual == "gameplay":
-        player.movement() #type: ignore (isso é pra meu IDE problemático que acha que o rsave vai dar None)
+        player.movement()
+        if len(balas) + len(inimigos) > 0:
+            for inimigo in inimigos:
+                for bala in balas:
+                    if collide(inimigo.x, inimigo.y, 30, bala.x, bala.y, 4): inimigo.hp -= player.base_damage; bala.perfsleft -=1
         if len(balas) != 0:
-            for bala in balas:
-                bala.movement()
-            balas = [b for b in balas if b.inbounds]
-    draw(tela_atual, tela, tamanho_tela, player, balas)
+            for bala in balas: bala.movement()
+        if len(inimigos) != 0:
+            for inimigo in inimigos:
+                inimigo.movement(player)
+        if Now - last_enemy >= enemy_delay:
+            inimigos.append(enemy())
+            last_enemy = Now
+            enemy_delay = random.randint(1500, 4000)
+        balas = [b for b in balas if b.inbounds and bala.perfsleft > 0]
+        inimigos = [e for e in inimigos if e.hp > 0]
+    draw(tela_atual, tela, tamanho_tela, player, balas, inimigos)
     print(tela_atual)
     tempo.tick(30)
 

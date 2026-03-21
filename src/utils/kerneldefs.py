@@ -77,6 +77,15 @@ def music_s():
     music_t = threading.Thread(target = music, daemon = true)
     music_t.start()
 
+def collide(tgx, tgy, tgsz, etcx, etcy, etcsz):
+    tgu, tgd, tgr, tgl = tgy - tgsz/2, tgy + tgsz/2, tgx + tgsz/2, tgx - tgsz/2
+    etcu, etcd, etcr, etcl = etcy - etcsz/2, etcy + etcsz/2, etcx + etcsz/2, etcx - etcsz/2
+    return (etcd > tgu
+        and etcu < tgd
+        and etcr > tgl
+        and etcl < tgr)
+
 def GET_OUT():
     pygame.quit()
     sys.exit()
+
