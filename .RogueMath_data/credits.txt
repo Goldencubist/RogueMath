@@ -7,21 +7,22 @@ Aqui estão os autores deste jogo, contruido com muito suor, trabalho duro e tra
 
 --- ARTES VISUAIS ---
     Golden Dev
-    Myachsky
-    ??? (nome não definido)
+    ShedGameplays
 
 --- MÚSICA ---
-    Myachsky
     Golden Dev
 
+--- EFEITOS SONOROS ---
+    HeB
+
 -- CONTROLE DE QUALIDADE --
-    Gbom
+    RoDev
 
 --- AGRADECIMENTOS ESPECIAIS ---
     -- Inspirações --
         Zombie Rush - Estilo de Gameplay
         Terraria - Estilo de Arte
         Undertale - Humor (ainda não adicionado), Estilo de Arte, Estilo Musical
-        Undertale Last Breath (Fan game de Undertale) - Estilo Musical
+        Last Breath, Disbelief Papyrus (Fan games de Undertale) - Estilo Musical
 
 ASS. : Golden Dev

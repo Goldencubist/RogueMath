@@ -1,4 +1,6 @@
 __pycache__/
 dev_notes/
 run.sh
-.RogueMath_data/data*
+.RogueMath_data/data.dat
+.RogueMath_data/data.bak
+.RogueMath_data/data.old
