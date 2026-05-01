@@ -58,7 +58,9 @@ while jogando:
         balas = [b for b in balas if b.inbounds and bala.perfsleft > 0]
         inimigos = [i for i in inimigos if i.alive]
     else:
+        inimigos = []
         player.kills = 0
+        player.x, player.y = 325, 325
     draw(tela_atual, tela, tamanho_tela, player, balas, inimigos)
     print(tela_atual)
     tempo.tick(30)
