@@ -43,19 +43,22 @@ while jogando:
         player.movement()
         if len(balas) + len(inimigos) > 0:
             for inimigo in inimigos:
+                if inimigo.hp < 1: inimigo.die(player)
                 for bala in balas:
-                    if collide(inimigo.x, inimigo.y, 30, bala.x, bala.y, 4): inimigo.hp -= player.base_damage; bala.perfsleft -=1
+                    if collide(inimigo.x, inimigo.y, 30, bala.x, bala.y, 4): bala.hit(player, inimigo)
         if len(balas) != 0:
             for bala in balas: bala.movement()
         if len(inimigos) != 0:
             for inimigo in inimigos:
                 inimigo.movement(player)
         if Now - last_enemy >= enemy_delay:
-            inimigos.append(enemy())
+            inimigos.append(enemy(player.kills))
             last_enemy = Now
             enemy_delay = random.randint(1500, 4000)
         balas = [b for b in balas if b.inbounds and bala.perfsleft > 0]
-        inimigos = [e for e in inimigos if e.hp > 0]
+        inimigos = [i for i in inimigos if i.alive]
+    else:
+        player.kills = 0
     draw(tela_atual, tela, tamanho_tela, player, balas, inimigos)
     print(tela_atual)
     tempo.tick(30)

@@ -14,3 +14,8 @@ class bullet:
         self.y += self.sy
         if self.x >= 649 or self.x <= 4 or self.y >= 649 or self.y <= 4:
             self.inbounds = false
+
+    def hit(self, player, enemy):
+        enemy.hp -= player.base_damage
+        self.perfsleft -= 1
+

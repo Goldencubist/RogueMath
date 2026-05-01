@@ -1,12 +1,13 @@
 import pygame
 
 from golden_utils import true, false, none
-from src.fonts.fonts import fontetítulo
+from src.fonts.fonts import fontetítulo, fontestats
 
 textotítulo = fontetítulo.render("RogueMath", false, (255, 255, 255))
 
 def draw(tela_atual, tela, tamanho_tela, player, balas, inimigos):
     mousepos = pygame.mouse.get_pos()
+    textomoedas = fontestats.render(f"Moedas: {player.coins}", false, (0, 0 ,0))
     match tela_atual:
         case "menu":
             tela.fill((0, 0, 0))
@@ -21,6 +22,7 @@ def draw(tela_atual, tela, tamanho_tela, player, balas, inimigos):
             if len(inimigos) != 0:
                 for inimigo in inimigos:
                     pygame.draw.rect(tela, (255, 0, 0), (inimigo.x - 15, inimigo.y - 15, 30, 30))
+            tela.blit(textomoedas, (50, 25))
         case _:
             tela.fill((103, 55, 192))
     pygame.draw.circle(tela, (255, 255, 255), mousepos, 4)

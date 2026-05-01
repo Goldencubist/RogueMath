@@ -1,12 +1,13 @@
 {
-    "x": 440,
-    "y": 468,
-    "coins": 0,
+    "x": 366,
+    "y": 304,
+    "coins": 25,
     "speed": 1,
-    "lastshot": 137821,
+    "lastshot": 2081,
     "delay": 1000,
     "base_damage": 1,
     "perfs": 2,
+    "kills": 0,
     "posx": 61,
     "posy": 626
 }

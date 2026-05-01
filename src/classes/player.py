@@ -16,6 +16,7 @@ class player:
         self.delay = 1000
         self.base_damage = 1
         self.perfs = 1
+        self.kills = 0
 
     def movement(self):
         teclas = pygame.key.get_pressed()
