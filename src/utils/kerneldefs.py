@@ -55,6 +55,7 @@ def wsave(player):
 def initialization():
     pygame.init()
     pygame.font.init()
+    pygame.mixer.init()
     tamanho_tela = 650
     tela = pygame.display.set_mode((tamanho_tela, tamanho_tela))
     pygame.display.set_caption("RogueMath")
@@ -62,7 +63,6 @@ def initialization():
     return tamanho_tela, tela, "menu", true, pygame.time.Clock()
 
 def music():
-    pygame.mixer.init()
     play_folder = os.path.join(".", "assets", "music")
     musicas = [os.path.join(play_folder, f) for f in os.listdir(play_folder)]
     while true:

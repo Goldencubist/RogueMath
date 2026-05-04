@@ -17,6 +17,8 @@ class player:
         self.base_damage = 1
         self.perfs = 1
         self.kills = 0
+        self.hp = 20
+        self.iticks = 0
 
     def movement(self):
         teclas = pygame.key.get_pressed()
@@ -39,7 +41,7 @@ class player:
             sx = cos(an) * 5
             sy = sin(an) * 5
             self.lastshot = now
-            return bullet(self.x - 15, self.y - 15, sx, sy, self.perfs)
+            return bullet(self.x, self.y, sx, sy, self.perfs)
         else:
             return none
 

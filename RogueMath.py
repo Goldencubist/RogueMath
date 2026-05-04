@@ -46,32 +46,42 @@ while jogando:
                     player.speed *= 10; player.speed += 1; player.speed /= 10; player.coins -= 10
                 elif evento.button == 3 and player.coins >= 50 and player.perfs <= 4:
                     player.perfs += 1; player.coins -= 50
-
-    if tela_atual == "gameplay":
-        player.movement()
-        if len(balas) + len(inimigos) > 0:
-            for inimigo in inimigos:
-                if inimigo.hp < 1: inimigo.die(player)
-                for bala in balas:
-                    if collide(inimigo.x, inimigo.y, 30, bala.x, bala.y, 4): bala.hit(player, inimigo)
-        if len(balas) != 0:
-            for bala in balas: bala.movement()
-        if len(inimigos) != 0:
-            for inimigo in inimigos:
-                inimigo.movement(player)
-        if Now - last_enemy >= enemy_delay:
-            inimigos.append(enemy(player.kills))
-            last_enemy = Now
-            enemy_delay = random.randint(1500, 4000)
-        balas = [b for b in balas if b.inbounds and bala.perfsleft > 0]
-        inimigos = [i for i in inimigos if i.alive]
-    else:
-        inimigos = []
-        player.kills = 0
-        player.x, player.y = tamanho_tela/2, tamanho_tela/2
+    match tela_atual:
+        case "gameplay":
+            player.movement()
+            if player.iticks >= 1: player.iticks -= 1
+            if len(balas) + len(inimigos) > 0:
+                for inimigo in inimigos:
+                    if inimigo.hp < 1: inimigo.die(player)
+                    if inimigo.iticks >= 1: inimigo.iticks -= 1
+                    if collide(inimigo.x, inimigo.y, 30, player.x, player.y, 30) and player.iticks <= 0:
+                        player.hp -= 1; player.iticks = 15
+                        pygame.mixer.Sound(os.path.join("assets", "sfx", "playerhurt.mp3")).play()
+                    for bala in balas:
+                        if collide(inimigo.x, inimigo.y, 30, bala.x, bala.y, 4) and inimigo.iticks <= 0:
+                            bala.hit(player, inimigo)
+            if len(balas) != 0:
+                for bala in balas: bala.movement()
+            if len(inimigos) != 0:
+                for inimigo in inimigos:
+                    inimigo.movement(player)
+            if Now - last_enemy >= enemy_delay:
+                inimigos.append(enemy(player.kills))
+                last_enemy = Now
+                enemy_delay = random.randint(1500, 4000)
+            balas = [b for b in balas if b.inbounds and b.perfsleft > 0]
+            inimigos = [i for i in inimigos if i.alive]
+        case "loja": pass
+        case _:
+            inimigos = []
+            player.kills = 0
+            player.x, player.y = tamanho_tela/2, tamanho_tela/2
+            player.hp = 20
     draw(tela_atual, tela, tamanho_tela, player, balas, inimigos)
     print(tela_atual)
+    if player.hp <= 0: tela_atual = "menu"; pygame.mixer.Sound(os.path.join("assets", "sfx", "playerdeath.mp3")).play()
     tempo.tick(30)
 
 wsave(player)
 GET_OUT()
+

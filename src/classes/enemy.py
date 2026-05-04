@@ -9,6 +9,7 @@ class enemy:
         self.hp = random.randint(max(1, maxhealth - 49), maxhealth + 1)
         self.alive = true
         self.coins_at_death = max(self.hp / 10, 1)
+        self.iticks = 0
 
     def movement(self, player):
         px, py = player.x, player.y
