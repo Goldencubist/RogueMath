@@ -6,7 +6,7 @@ from golden_utils import true, false
 class enemy:
     def __init__(self, maxhealth):
         self.x, self.y = random.choice(((0,0), (0, 650), (650, 650), (650, 0)))
-        self.hp = random.randint(1, maxhealth + 1)
+        self.hp = random.randint(max(1, maxhealth - 49), maxhealth + 1)
         self.alive = true
         self.coins_at_death = max(self.hp / 10, 1)
 

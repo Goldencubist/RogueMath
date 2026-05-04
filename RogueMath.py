@@ -35,10 +35,18 @@ while jogando:
         elif evento.type == pygame.KEYDOWN:
             tela_atual = state_sys(tela_atual)
         elif evento.type == pygame.MOUSEBUTTONDOWN:
-            if evento.button == 1:
-                balanova = player.shoot(pygame.mouse.get_pos())
-                if balanova is not None and balanova != none:
-                    balas.append(balanova)
+            if tela_atual == "gameplay":
+                if evento.button == 1:
+                    balanova = player.shoot(pygame.mouse.get_pos())
+                    if balanova is not None and balanova != none: balas.append(balanova)
+            elif tela_atual == "loja":
+                if evento.button == 1 and player.coins >= 30 and player.base_damage <= 9:
+                    player.base_damage += 1; player.coins -= 30
+                elif evento.button == 2 and player.coins >= 10 and player.speed <= 4.9:
+                    player.speed *= 10; player.speed += 1; player.speed /= 10; player.coins -= 10
+                elif evento.button == 3 and player.coins >= 50 and player.perfs <= 4:
+                    player.perfs += 1; player.coins -= 50
+
     if tela_atual == "gameplay":
         player.movement()
         if len(balas) + len(inimigos) > 0:
@@ -60,7 +68,7 @@ while jogando:
     else:
         inimigos = []
         player.kills = 0
-        player.x, player.y = 325, 325
+        player.x, player.y = tamanho_tela/2, tamanho_tela/2
     draw(tela_atual, tela, tamanho_tela, player, balas, inimigos)
     print(tela_atual)
     tempo.tick(30)
