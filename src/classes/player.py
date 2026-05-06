@@ -35,8 +35,8 @@ class player:
         now = pygame.time.get_ticks()
         if now - self.lastshot >= self.delay:
             mousex, mousey = mousepos
-            dx = mousex - (self.x - 15)
-            dy = mousey - (self.y - 15)
+            dx = mousex - self.x
+            dy = mousey - self.y
             an = atan2(dy, dx)
             sx = cos(an) * 5
             sy = sin(an) * 5

@@ -3,18 +3,22 @@ import random
 
 from golden_utils import true, false
 
+from src.fonts.fonts import fonteinimigo
+
 class enemy:
     def __init__(self, maxhealth):
         self.x, self.y = random.choice(((0,0), (0, 650), (650, 650), (650, 0)))
         self.hp = random.randint(max(1, maxhealth - 49), maxhealth + 1)
+        self.font = fonteinimigo
+        self.image = self.font.render(f"{self.hp}", false, (255, 0, 0))
         self.alive = true
         self.coins_at_death = max(self.hp / 10, 1)
-        self.iticks = 0
+        self.width, self.height = self.image.get_width(), self.image.get_height()
 
     def movement(self, player):
         px, py = player.x, player.y
-        dx = (px - 15) - self.x
-        dy = (py - 15) - self.y
+        dx = px - self.x
+        dy = py - self.y
         an = atan2(dy, dx)
         self.x += cos(an)
         self.y += sin(an)

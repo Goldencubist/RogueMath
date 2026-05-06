@@ -16,7 +16,6 @@ from src.classes.enemy import enemy
 
 sys.stdout = open(os.path.join(".RogueMath_data", "log"), "w", encoding="utf-8")
 sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="utf-8")
-music_s()
 
 tamanho_tela, tela, tela_atual, jogando, tempo = initialization()
 pygame.mouse.set_visible(false)
@@ -52,14 +51,13 @@ while jogando:
             if player.iticks >= 1: player.iticks -= 1
             if len(balas) + len(inimigos) > 0:
                 for inimigo in inimigos:
-                    if inimigo.hp < 1: inimigo.die(player)
-                    if inimigo.iticks >= 1: inimigo.iticks -= 1
-                    if collide(inimigo.x, inimigo.y, 30, player.x, player.y, 30) and player.iticks <= 0:
+                    if collide(inimigo.x, inimigo.y, inimigo.width, inimigo.height, player.x, player.y, 30, 30) and player.iticks <= 0:
                         player.hp -= 1; player.iticks = 15
                         pygame.mixer.Sound(os.path.join("assets", "sfx", "playerhurt.mp3")).play()
                     for bala in balas:
-                        if collide(inimigo.x, inimigo.y, 30, bala.x, bala.y, 4) and inimigo.iticks <= 0:
+                        if collide(inimigo.x, inimigo.y, inimigo.width, inimigo.height, bala.x, bala.y, 4, 4) and not inimigo in bala.hitten:
                             bala.hit(player, inimigo)
+                            if inimigo.hp < 1: inimigo.die(player)
             if len(balas) != 0:
                 for bala in balas: bala.movement()
             if len(inimigos) != 0:

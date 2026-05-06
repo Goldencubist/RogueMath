@@ -35,8 +35,8 @@ def rsave():
 def wsave(player):
     try:
         os.remove(os.path.join(".", ".RogueMath_data", "data.old"))
-        os.rename(os.path.join(".", ".RogueMath_data", "data.bak"), os.path.join(".", ".RogueMath_data", "data.old"))
-        os.rename(os.path.join(".", ".RogueMath_data", "data.dat"), os.path.join(".", ".RogueMath_data", "data.bak"))
+        os.rename(os.path.join(".", ".RogueMath_data", "data.bak")), os.path.join(".", ".RogueMath_data", "data.old")
+        os.rename(os.path.join(".", ".RogueMath_data", "data.dat")), os.path.join(".", ".RogueMath_data", "data.bak")
         wjson(player.__dict__, os.path.join(".", ".RogueMath_data", "data.dat"))
     except FileNotFoundError:
         with open(os.path.join(".", ".RogueMath_data", "data.dat"), "a"):
@@ -56,10 +56,11 @@ def initialization():
     pygame.init()
     pygame.font.init()
     pygame.mixer.init()
+    sl(0.5)
+    music_s()
     tamanho_tela = 650
     tela = pygame.display.set_mode((tamanho_tela, tamanho_tela))
     pygame.display.set_caption("RogueMath")
-    print("Duro de calcular")
     return tamanho_tela, tela, "menu", true, pygame.time.Clock()
 
 def music():
@@ -77,9 +78,9 @@ def music_s():
     music_t = threading.Thread(target = music, daemon = true)
     music_t.start()
 
-def collide(tgx, tgy, tgsz, etcx, etcy, etcsz):
-    tgu, tgd, tgr, tgl = tgy - tgsz/2, tgy + tgsz/2, tgx + tgsz/2, tgx - tgsz/2
-    etcu, etcd, etcr, etcl = etcy - etcsz/2, etcy + etcsz/2, etcx + etcsz/2, etcx - etcsz/2
+def collide(tgx, tgy, tgwidth, tgheight, etcx, etcy, etcwidth, etcheight):
+    tgu, tgd, tgr, tgl = tgy - tgheight/2, tgy + tgheight/2, tgx + tgwidth/2, tgx - tgwidth/2
+    etcu, etcd, etcr, etcl = etcy - etcheight/2, etcy + etcheight/2, etcx + etcwidth/2, etcx - etcwidth/2
     return (etcd > tgu
         and etcu < tgd
         and etcr > tgl

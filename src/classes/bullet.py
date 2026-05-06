@@ -8,6 +8,7 @@ class bullet:
         self.sy = speedy
         self.inbounds = true
         self.perfsleft = perfs
+        self.hitten = []
     
     def movement(self):
         self.x += self.sx
@@ -16,6 +17,9 @@ class bullet:
             self.inbounds = false
 
     def hit(self, player, enemy):
+        self.hitten.append(enemy)
         enemy.hp -= player.base_damage
+        enemy.image = enemy.font.render(f"{enemy.hp}", false, (255, 0, 0))
+        enemy.width, enemy.height = enemy.image.get_width(), enemy.image.get_height()
         self.perfsleft -= 1
 
