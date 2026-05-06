@@ -3,7 +3,6 @@ Aqui estão os autores deste jogo, contruido com muito suor, trabalho duro e tra
 
 --- PROGRAMAÇÃO ---
     Golden Dev
-    Myachsky
 
 --- ARTES VISUAIS ---
     Golden Dev
@@ -16,7 +15,7 @@ Aqui estão os autores deste jogo, contruido com muito suor, trabalho duro e tra
     HeB
 
 -- CONTROLE DE QUALIDADE --
-    RoDev
+    Nillk2
 
 --- AGRADECIMENTOS ESPECIAIS ---
     -- Inspirações --
