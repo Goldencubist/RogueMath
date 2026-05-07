@@ -4,10 +4,8 @@ import os
 import pygame
 from golden_utils import true, false, none, rjson, wjson
 
-from src.utils.kerneldefs import path
-
-sys.stdout = open(path(os.path.join(".RogueMath_data", "log")), "w", encoding="utf-8")
-sys.stderr = open(path(os.path.join(".RogueMath_data", "error_log")), "w", encoding="utf-8")
+sys.stdout = open(os.path.join(".RogueMath_data", "log"), "w", encoding="utf-8")
+sys.stderr = open(os.path.join(".RogueMath_data", "error_log"), "w", encoding="utf-8")
 
 gs = [
     "menu",
