@@ -5,7 +5,8 @@ from src.fonts.fonts import fontetítulo, fontestats, fonteloja
 
 textotítulo = fontetítulo.render("RogueMath", false, (255, 255, 255))
 textomoedas, textoloja = none, none
-lastcoin, lastspeed, lastdamage, lastperf = none, none, none, none
+lastcoin, lastspeed, lastdamage, lastperf, lastcp = none, none, none, none, none
+cptext = fontestats.render("[insert carter pcs' compliment to apple]", false, (155, 155, 155))
 #CÓDIGO DE IA {
 def render_multiline(font, text, color, line_spacing=0, antialias=false):
     lines = text.splitlines() or [""]
@@ -18,9 +19,9 @@ def render_multiline(font, text, color, line_spacing=0, antialias=false):
         out.blit(s, (0, y))
         y += s.get_height() + line_spacing
     return out
-
-def draw(tela_atual, tela, tamanho_tela, player, balas, inimigos):
-    global lastcoin, lastspeed, lastdamage, lastperf, textoloja, textomoedas
+#}
+def draw(tela_atual, tela, tamanho_tela, player, balas, inimigos, cp):
+    global lastcoin, lastspeed, lastdamage, lastperf, textoloja, textomoedas, lastcp, cptext
     mousepos = pygame.mouse.get_pos()
     if player.speed != lastspeed or player.coins != lastcoin or player.base_damage != lastdamage or player.perfs != lastperf:
         textoloja = render_multiline(fonteloja, f"""Clique com o botão esquerdo do mouse para aumentar o dano, com o direito
@@ -29,6 +30,8 @@ velocidade atual: {player.speed}, dano atual: {player.base_damage}, perfuração
 velocidade: 10 moedas, dano: 30 moedas, perfuração: 50 moedas, moedas: {player.coins}""", (255, 255, 255), 5)
         textomoedas = fontestats.render(f"Moedas: {player.coins}", false, (0, 0 ,0))
         lastspeed, lastcoin, lastdamage, lastperf = player.speed, player.coins, player.base_damage, player.perfs
+    if lastcp != cp:
+        lastcp = cp
     match tela_atual:
         case "menu":
             tela.fill((0, 0, 0))
@@ -51,6 +54,9 @@ velocidade: 10 moedas, dano: 30 moedas, perfuração: 50 moedas, moedas: {player
             tela.blit(textoloja, (tamanho_tela/2 - textoloja.get_width()/2, tamanho_tela/2 - textoloja.get_height()/2))
         case _:
             tela.fill((255, 0, 0))
+    if cp == true:
+        tela.blit(cptext, (0, 0))
+    lastcp = cp
     pygame.draw.circle(tela, (255, 255, 255), mousepos, 4)
     pygame.draw.circle(tela, (0, 0, 0), mousepos, 5, 1)
     pygame.display.flip()

@@ -24,6 +24,8 @@ player.lastshot = 0
 enemy_delay = random.randint(1500, 4000)
 last_enemy = 0
 balas, inimigos = [], []
+last_keys = []
+cp = false
 
 while jogando:
     eventos = pygame.event.get()
@@ -33,6 +35,7 @@ while jogando:
             jogando = False
         elif evento.type == pygame.KEYDOWN:
             tela_atual = state_sys(tela_atual)
+            last_keys.append(evento.key)
         elif evento.type == pygame.MOUSEBUTTONDOWN:
             if tela_atual == "gameplay":
                 if evento.button == 1:
@@ -75,9 +78,13 @@ while jogando:
             player.kills = 0
             player.x, player.y = tamanho_tela/2, tamanho_tela/2
             player.hp = 20
-    draw(tela_atual, tela, tamanho_tela, player, balas, inimigos)
+    draw(tela_atual, tela, tamanho_tela, player, balas, inimigos, cp)
     print(tela_atual)
     if player.hp <= 0: tela_atual = "menu"; pygame.mixer.Sound(os.path.join("assets", "sfx", "playerdeath.mp3")).play()
+    if len(last_keys) >= 3:
+        last_keys.pop(0)
+    if last_keys == [pygame.K_c, pygame.K_p] and cp != true: cp = true
+    else: cp = false
     tempo.tick(30)
 
 wsave(player)

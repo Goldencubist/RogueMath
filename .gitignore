@@ -5,3 +5,8 @@ run.sh
 .RogueMath_data/data.bak
 .RogueMath_data/data.old
 
+
+
+# Added by cargo
+
+/target
